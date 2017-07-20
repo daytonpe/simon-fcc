@@ -2,34 +2,72 @@
 	width: 90%;
 }
 
+#toyDiv{
+	position: relative;
+	height: 600px;
+	width: 600px;
+}
+
+#colorDiv{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+#controlDiv{
+	position: absolute;
+	background-color: pink;
+	width: 50%;
+	height: 50%;
+	z-index: 10;
+}
+
 .col{
 	text-align: center;
 }
 
 .btn{
-	border: 1px solid black;
+	border: 10px solid #4a4a4a;
 	color: white;
+	border-radius: 0px;
+	margin: 0px;
 }
 
 #greenButton{
+	border-top-left-radius: 100%;
+	border-left-width: 20px;
+	border-top-width: 20px;
 	height: 200px;
 	width: 200px;
 	background-color: green;
 }
 
 #blueButton{
+	margin-left: -4px;
+	border-bottom-right-radius: 100%;
+	border-bottom-width: 20px;
+	border-right-width: 20px;	
 	height: 200px;
 	width: 200px;
 	background-color: blue;
 }
 
 #yellowButton{
+	border-bottom-left-radius: 100%;
+	border-bottom-width: 20px;
+	border-left-width: 20px;
 	height: 200px;
 	width: 200px;
 	background-color: yellow;
 }
 
 #redButton{
+	margin-left: -4px;
+	border-top-right-radius: 100%;
+	border-top-width: 20px;
+	border-right-width: 20px;
 	height: 200px;
 	width: 200px;
 	background-color: red;

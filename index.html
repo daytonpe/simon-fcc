@@ -59,7 +59,6 @@
 				console.log('WRONG!')
 				userArr = [];
 				showPattern(); //replay the current computer array
-
 			}
 
 			//(STRICT MODE) play game over sound and reset all counters 
@@ -156,24 +155,23 @@
 
 		<div id="main" class="container">	
 
-			<div class="row">
-				<div class="col col-md-6">
-					<button class="btn" id="greenButton"></button>
-				</div>
-				<div class="col col-md-6">
-					<button class="btn" id="redButton"></button>
+			<div id="toyDiv">
+				<div id="colorDiv">
+					<div id="">
+						<button class="btn" id="greenButton"></button>
+						<button class="btn" id="redButton"></button>
+					</div>
+					<div>
+						<button class="btn" id="yellowButton"></button>
+						<button class="btn" id="blueButton"></button>
+					</div>			
 				</div>
 			</div>
 
-
-			<div class="row">
-				<div class="col col-md-6">
-					<button class="btn" id="yellowButton"></button>
-				</div>
-				<div class="col col-md-6">
-					<button class="btn" id="blueButton"></button>
-				</div>
+			<div id="controlDiv">
+				
 			</div>
+
 			<div class="row">
 				<div class="col col-md-3">
 					<p id="count">--</p>
