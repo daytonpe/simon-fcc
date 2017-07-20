@@ -1,0 +1,48 @@
+#main{
+	width: 90%;
+}
+
+.col{
+	text-align: center;
+}
+
+.btn{
+	border: 1px solid black;
+	color: white;
+}
+
+#greenButton{
+	height: 200px;
+	width: 200px;
+	background-color: green;
+}
+
+#blueButton{
+	height: 200px;
+	width: 200px;
+	background-color: blue;
+}
+
+#yellowButton{
+	height: 200px;
+	width: 200px;
+	background-color: yellow;
+}
+
+#redButton{
+	height: 200px;
+	width: 200px;
+	background-color: red;
+}
+
+#strictButton{
+	color: black;
+	height: 50px;
+	width: 50px;
+	background-color: yellow;
+	border-radius: 50%;
+}
+
+#count{
+	font-size: 3em;
+}

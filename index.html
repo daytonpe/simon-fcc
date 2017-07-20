@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Simon (PD)</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="style.css" type="text/css" />
+	</head>
+
+	<body>
+
+		<script>
+
+			var strictOn = false;
+
+			var count = 0;
+
+			// false=off
+			var onOff = false;
+
+			// Array storing random pattern that is being built by computer
+			var compArr = [];
+
+			// Array storing pattern that is being input by user.
+			var userArr = [];
+
+
+			//push letter to user array to be checked against computer array
+			function userArrPush(str){
+				if (compArr.length!=0){ //can't push button before computer goes first
+					userArr.push(str);
+					console.log('userArr: '+userArr);
+					
+					
+					if(!compareArrays()){ //you messed up
+						if(strictOn){
+							gameOver(); //Strict mode consequence
+						} else wrong(); //Not strict mode consequence
+					} else if(userArr.length==compArr.length){ //completely correct
+						compArrPush(); //computer adds one color to pattern.
+						
+					}	
+				}
+			}
+
+			// make the sounds and show the pattern
+			function showPattern(){
+				console.log('beep boop beep boop')
+				console.log('compArr: '+compArr);
+			}
+
+			//(NOT STRICT MODE) replay the current count number if you got it wrong
+			function wrong(){
+				console.log('WRONG!')
+				userArr = [];
+				showPattern(); //replay the current computer array
+
+			}
+
+			//(STRICT MODE) play game over sound and reset all counters 
+			function gameOver(){
+				console.log('GAME OVER');
+				compArr = [];
+				userArr = [];
+				updateCount();
+			}
+
+			function compArrPush(){
+
+				// pick a random integer between 1 & 4
+				var i = Math.floor(Math.random() * (5 - 1) + 1);
+
+				// choose a color based on that integer and add to comp array
+				if (i==1){
+					compArr.push('r');
+				} else if (i==2){
+					compArr.push('g');
+				} else if (i==3){
+					compArr.push('y');
+				} else if (i==4){
+					compArr.push('b');
+				}
+
+				updateCount();
+
+				// now that a new color has been added, clear the player pattern
+				userArr = [];
+
+				// later this part will be 'playing' the pattern for the user
+				console.log('compArr: '+compArr);
+			}
+
+			function updateCount(){
+				count = compArr.length;
+				$('#count').text(count);
+			}
+
+			// compares the current user array to beginning of the computer array
+			function compareArrays(){
+
+				return compArr.slice(0,userArr.length).toString() == userArr.toString();
+			}
+
+			function toggleStrict(){
+				if (strictOn == false){
+					strictOn = true;
+				} else strictOn = false;
+				$('#strictIndicator').text(strictOn);
+			}
+
+			function toggleOnOff(){
+				if (onOff == false){
+					onOff = true;
+				} else {
+					onOff = false;
+					userArr=[];
+					compArr=[];
+					count=0;
+				}
+				$('#onOffIndicator').text(onOff);
+			}
+
+			function start(){
+				if(onOff==true && compArr.length==0){
+					// push the first color to the compArr
+					compArrPush();	
+				}
+			}			
+
+			$(document).ready(function() {
+
+				// Strict Button Controls
+				$('#strictButton').on('click', function() {toggleStrict();});
+				$('#strictIndicator').text(strictOn);
+
+				// On/Off Button Controls
+				$('#onOffButton').on('click', function() {toggleOnOff();});
+				$('#onOffIndicator').text(onOff);
+
+				// Start Button Controls
+				$('#startButton').on('click', function() {start();});
+
+				// Color Button Controls
+				$('#greenButton').on('click', function() {userArrPush('g');});
+				$('#redButton').on('click', function() {userArrPush('r');});
+				$('#yellowButton').on('click', function() {userArrPush('y');});
+				$('#blueButton').on('click', function() {userArrPush('b');});
+			});
+
+		</script>
+
+		<div id="main" class="container">	
+
+			<div class="row">
+				<div class="col col-md-6">
+					<button class="btn" id="greenButton"></button>
+				</div>
+				<div class="col col-md-6">
+					<button class="btn" id="redButton"></button>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col col-md-6">
+					<button class="btn" id="yellowButton"></button>
+				</div>
+				<div class="col col-md-6">
+					<button class="btn" id="blueButton"></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-md-3">
+					<p id="count">--</p>
+				</div>
+				<div class="col col-md-3">
+					<button id="startButton" class="btn">Start</button>
+				</div>
+				<div class="col col-md-3">
+					<button id="strictButton" class="btn">Strict</button>
+					<p id="strictIndicator"></p>
+				</div>
+				<div class="col col-md-3">
+					<button class="btn" id="onOffButton">On/Off</button>
+					<p id="onOffIndicator"></p>
+				</div>
+			</div>
+		
+<!-- 			<footer>	
+				<p id="credit">Coded by Pat Dayton</p>
+			</footer> -->
+		</div>
+
+	</body>
+
+</html>
